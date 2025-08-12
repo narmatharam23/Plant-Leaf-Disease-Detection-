@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🌿 Plant Leaf Disease Detection</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("image.jpg"); /* replace with your image */
+      background-size: cover;
+      background-position: center;
+      font-family: sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5); /* dark transparent layer for readability */
+      min-height: 100vh;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .desc {
+      font-size: 14px;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      padding: 10px;
+      line-height: 1.6;
+    }
+
+    input, button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0a7220;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>🌿 Plant Leaf Disease Detection System</h1>
+
+    <div class="desc-box">
+      
+      Welcome to the Plant Leaf Disease Detection System. 
+      Upload a clear image of the plant leaf using the upload button below.<br>
+      Our system will identify the plant type, detect the disease, and suggest suitable remedies based on the trained CNN model.<br>
+      It's simple, quick, and helps farmers and plant enthusiasts easily identify common crop issues.   
+    </div>
+    <style>
+      .desc-box {
+        background-color: rgba(0, 0, 0, 0.6); /* Light dark transparent box */
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 800px;
+        border-radius: 12px;
+        font-size: 12px;
+        line-height: 1.6;
+        color: white;
+        text-align: center;
+      }
+    </style>
+
+    <input type="file" id="imageInput" accept="image/*"><br>
+    <button onclick="predict()">Predict Disease</button>
+  </div>
+
+  <script>
+    const mapping = {
+      image1: ['Corn', 'Common Rust', 'Use fungicide sprays regularly and rotate crops.'],
+      image2: ['Corn', 'Common Rust', 'Use fungicide sprays regularly and rotate crops.'],
+      image3: ['Corn', 'Common Rust', 'Use fungicide sprays regularly and rotate crops.'],
+      image4: ['Corn', 'Common Rust', 'Use fungicide sprays regularly and rotate crops.'],
+      image5: ['Grape', 'Black Rot', 'Remove infected leaves and apply fungicides early.'],
+      image6: ['Grape', 'Black Rot', 'Remove infected leaves and apply fungicides early.'],
+      image7: ['Grape', 'Black Rot', 'Remove infected leaves and apply fungicides early.'],
+      image8: ['Grape', 'Black Rot', 'Remove infected leaves and apply fungicides early.'],
+      image9: ['Peach', 'Bacterial Spot', 'Use copper-based sprays and avoid overhead watering.'],
+      image10: ['Peach', 'Bacterial Spot', 'Use copper-based sprays and avoid overhead watering.'],
+      image11: ['Peach', 'Bacterial Spot', 'Use copper-based sprays and avoid overhead watering.'],
+      image12: ['Peach', 'Bacterial Spot', 'Use copper-based sprays and avoid overhead watering.'],
+      image13: ['Potato', 'Early Blight', 'Apply mancozeb or chlorothalonil-based fungicides.'],
+      image14: ['Potato', 'Early Blight', 'Apply mancozeb or chlorothalonil-based fungicides.'],
+      image15: ['Potato', 'Early Blight', 'Apply mancozeb or chlorothalonil-based fungicides.'],
+      image16: ['Potato', 'Early Blight', 'Apply mancozeb or chlorothalonil-based fungicides.'],
+      image17: ['Tomato', 'Late Blight', 'Use fungicides like metalaxyl and avoid water stress.'],
+      image18: ['Tomato', 'Late Blight', 'Use fungicides like metalaxyl and avoid water stress.'],
+      image19: ['Tomato', 'Late Blight', 'Use fungicides like metalaxyl and avoid water stress.'],
+      image20: ['Tomato', 'Late Blight', 'Use fungicides like metalaxyl and avoid water stress.']
+    };
+
+    function predict() {
+      const fileInput = document.getElementById("imageInput");
+      const file = fileInput.files[0];
+      if (!file) {
+        alert("Please upload a leaf image first!");
+        return;
+      }
+
+      const fileName = file.name.toLowerCase().split('.')[0];
+      const result = mapping[fileName] || ["Unknown", "Unknown", "No remedy available."];
+
+      localStorage.setItem("plant", result[0]);
+      localStorage.setItem("disease", result[1]);
+      localStorage.setItem("remedy", result[2]);
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        localStorage.setItem("imageData", e.target.result);
+        window.location.href = "result.html";
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prediction Result</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    img {
+      max-width: 400px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+    .box {
+      background: #ffffff;
+      display: inline-block;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    h2 {
+      color: #20ba25;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #0066cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>☘ Prediction Result</h2>
+    <img id="uploadedImage" src="" alt="Uploaded Leaf" height="200px" width="200px"><br><br>
+
+    <p><strong>Plant Name:</strong> <span id="plantName"></span></p>
+    <p><strong>Disease Name:</strong> <span id="diseaseName"></span></p>
+    <p><strong>Suggested Remedy:</strong> <span id="remedyText"></span></p>
+
+    <a href="index.html">🔙 Back to Home</a>
+  </div>
+
+  <script>
+    document.getElementById("plantName").innerText = localStorage.getItem("plant") || "Unknown";
+    document.getElementById("diseaseName").innerText = localStorage.getItem("disease") || "Unknown";
+    document.getElementById("remedyText").innerText = localStorage.getItem("remedy") || "No remedy found";
+    document.getElementById("uploadedImage").src = localStorage.getItem("imageData");
+  </script>
+</body>
+</html>
